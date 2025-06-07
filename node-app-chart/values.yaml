@@ -42,8 +42,9 @@ securityContext: {}
 service:
   type: LoadBalancer
   port: 80
+  targetPort: 8080
   protocol: TCP
-  name: node-app-chart
+  name: node-app
 
 ingress:
   enabled: false
