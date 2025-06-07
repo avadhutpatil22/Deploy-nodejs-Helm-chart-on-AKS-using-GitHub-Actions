@@ -43,7 +43,7 @@ service:
   type: LoadBalancer
   port: 80
   protocol: TCP
-  name: node-app
+  name: node-app-chart
 
 ingress:
   enabled: false
