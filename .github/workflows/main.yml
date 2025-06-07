@@ -36,6 +36,6 @@ jobs:
         docker build -t $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG .
         docker push $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
 
-    - name: Deploy to AKS
-      run: |
-        kubectl apply -f k8s/deployment.yaml
+    - name: Update kube config
+      run: az aks get-credentials --name CKA --resource-group Avadhoot --overwrite-existing
+
