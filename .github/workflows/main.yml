@@ -39,21 +39,10 @@ jobs:
     - name: Update kube config
       run: az aks get-credentials --resource-group Avadhoot --name CKA
 
-    # - name: Deploy helm
-    #   run: |
-    #     helm install nodeapp ./node-app
+    - name: Deploy helm nodeapp
+      run: |
+        helm install nodeapp ./node-app
     
-    - name: Uninstall old release
-      run: helm uninstall nodeapp || true
-      shell: bash
-      env:
-       KUBECONFIG: /home/runner/work/_temp/kubeconfig_1749356552517
-
-    - name: Install with Helm
-      run: helm install nodeapp ./node-app
-      shell: bash
-      env:
-       KUBECONFIG: /home/runner/work/_temp/kubeconfig_1749356552517
-
+   
 
 
