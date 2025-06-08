@@ -28,13 +28,14 @@ jobs:
 
     - name: Build and Push Docker image to ACR
       env:
-        ACR_NAME: avadhoot.azurecr.io/avadhoot:latest
+        ACR_NAME: avadhoot.azurecr.io
         IMAGE_NAME: avadhoot
         IMAGE_TAG: latest
       run: |
-        az acr login --name $ACR_NAME
-        docker build -t $ACR_NAME.azurecr.io/$IMAGE_NAME:$IMAGE_TAG .
-        docker push $ACR_NAME.azurecr.io/$IMAGE_NAME:$IMAGE_TAG
+        az acr login --name avadhoot
+        docker build -t $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG .
+        docker push $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
+
 
     - name: Install Helm
       run: |
