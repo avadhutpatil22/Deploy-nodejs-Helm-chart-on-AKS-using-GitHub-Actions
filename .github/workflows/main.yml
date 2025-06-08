@@ -28,11 +28,11 @@ jobs:
 
     - name: Build and Push Docker image to ACR
       env:
-        ACR_NAME: avadhoot.azurecr.io
-        IMAGE_NAME: avadhoot
+        ACR_NAME: gitops.azurecr.io
+        IMAGE_NAME: gitops
         IMAGE_TAG: latest
       run: |
-        az acr login --name avadhoot
+        az acr login --name avadhootpatil
         docker build -t $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG .
         docker push $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
 
@@ -44,5 +44,5 @@ jobs:
     - name: Deploy Helm chart
       run: |
         helm upgrade --install nodeapp ./node-app \
-          --set image.repository=avadhoot.azurecr.io/avadhoot \
+          --set image.repository=gitops.azurecr.io/avadhootpatil \
           --set image.tag=latest
