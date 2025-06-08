@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "node-app-chart.name" -}}
+{{- define "node-app-chart.fullname" -}} ##name
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -46,7 +46,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "node-app-chart.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "node-app-chart.name" . }}
+app.kubernetes.io/name: {{ include "node-app-chart.fullname" . }} ##name
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
