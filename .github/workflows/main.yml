@@ -28,7 +28,7 @@ jobs:
 
     - name: Build and Push Docker image to ACR
       env:
-        ACR_NAME: avadhoot
+        ACR_NAME: avadhoot.azurecr.io
         IMAGE_NAME: avadhoot
         IMAGE_TAG: latest
       run: |
