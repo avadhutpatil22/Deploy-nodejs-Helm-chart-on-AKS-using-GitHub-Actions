@@ -43,13 +43,17 @@ jobs:
     #   run: |
     #     helm install nodeapp ./node-app
     
-    - name: Deploy with Helm
-      run: helm upgrade --install nodeapp ./node-app
-      shell: /usr/bin/bash -e
-       env: 
-        AZURE_HTTP_USER_AGENT: 
-        AZUREPS_HOST_ENVIRONMENT: 
-        KUBECONFIG: /home/runner/work/_temp/kubeconfig_1749355935420
-        KUBE_CONFIG_PATH: /home/runner/work/_temp/kubeconfig_1749355935420
+    - name: Uninstall old release
+      run: helm uninstall nodeapp || true
+      shell: bash
+      env:
+       KUBECONFIG: /home/runner/work/_temp/kubeconfig_1749356552517
+
+    - name: Install with Helm
+      run: helm install nodeapp ./node-app
+      shell: bash
+      env:
+       KUBECONFIG: /home/runner/work/_temp/kubeconfig_1749356552517
+
 
 
