@@ -28,21 +28,20 @@ jobs:
 
     - name: Build and Push Docker image to ACR
       env:
-        ACR_NAME: avadhoot.azurecr.io # e.g., myregistry.azurecr.io
+        ACR_NAME: avadhoot
         IMAGE_NAME: avadhoot
         IMAGE_TAG: latest
       run: |
         az acr login --name $ACR_NAME
-        docker build -t $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG .
-        docker push $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
+        docker build -t $ACR_NAME.azurecr.io/$IMAGE_NAME:$IMAGE_TAG .
+        docker push $ACR_NAME.azurecr.io/$IMAGE_NAME:$IMAGE_TAG
 
-    - name: Update kube config
-      run: az aks get-credentials --name CKA --resource-group Avadhoot --overwrite-existing
-
-    - name: Deploy helm nodeapp
+    - name: Install Helm
       run: |
-        helm install nodeapp1 ./node-app
-    
-   
+        curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
-
+    - name: Deploy Helm chart
+      run: |
+        helm upgrade --install nodeapp ./node-app \
+          --set image.repository=avadhoot.azurecr.io/avadhoot \
+          --set image.tag=latest
