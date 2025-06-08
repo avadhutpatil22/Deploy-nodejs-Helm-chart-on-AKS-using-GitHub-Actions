@@ -41,7 +41,7 @@ jobs:
 
     - name: Deploy helm nodeapp
       run: |
-        helm install nodeapp ./node-app
+        helm install nodeapp1 ./node-app
     
    
 
