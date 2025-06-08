@@ -37,7 +37,8 @@ jobs:
         docker push $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
 
     - name: Update kube config
-      run: az aks get-credentials --name CKA --resource-group Avadhoot --overwrite-existing
+      # run: az aks get-credentials --name CKA --resource-group Avadhoot --overwrite-existing
+      run: az aks update-kubeconfig --name CKA  
 
     - name: Deploy helm nodeapp
       run: |
