@@ -44,5 +44,5 @@ jobs:
     - name: Deploy Helm chart
       run: |
         helm upgrade --install nodeapp ./node-app \
-          --set image.repository=avadhoot.azurecr.io/avadhoot \
-          --set image.tag=latest
+          # --set image.repository=avadhoot.azurecr.io/avadhoot \
+          # --set image.tag=latest
