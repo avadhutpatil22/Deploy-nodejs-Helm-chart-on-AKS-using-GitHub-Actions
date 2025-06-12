@@ -37,12 +37,12 @@ jobs:
         docker push $ACR_NAME/$IMAGE_NAME:$IMAGE_TAG
 
 
-    - name: Install Helm
-      run: |
-        curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+    # - name: Install Helm
+    #   run: |
+    #     curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 
-    - name: Deploy Helm chart
-      run: |
-        helm upgrade --install nodeapp ./node-app \
-          --set image.repository=avadhoot.azurecr.io/avadhoot \
-          --set image.tag=latest
+    # - name: Deploy Helm chart
+    #   run: |
+    #     helm upgrade --install nodeapp ./node-app \
+    #       --set image.repository=avadhoot.azurecr.io/avadhoot \
+    #       --set image.tag=latest
